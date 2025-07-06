@@ -19,26 +19,25 @@ body, html {
   }
   
   #mobile-controls {
-    position: fixed;
-    bottom: 20px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    z-index: 999;
-  }
-  
-  #mobile-controls button {
-    padding: 18px 24px;
-    font-size: 22px;
-    border: none;
-    border-radius: 12px;
-    background-color: #ffaad4;
-    color: white;
-    font-weight: bold;
-    touch-action: manipulation;
-    transition: background-color 0.2s, transform 0.1s;
-  }
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  z-index: 999;
+}
+
+#mobile-controls button {
+  width: 30%;
+  padding: 14px 0;
+  font-size: 20px;
+  background-color: #ffaad4;
+  color: white;
+  border: none;
+  border-radius: 10px;
+}
+
   
   #mobile-controls button:active {
     background-color: #e893c4;
