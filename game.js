@@ -27,6 +27,13 @@ let moveRight = false;
 const restartBtn = document.getElementById("restart-btn");
 restartBtn.addEventListener("click", () => window.location.reload());
 
+// ✅ SHOW/HIDE MOBILE CONTROLS BASED ON SCREEN SIZE
+if (window.innerWidth < 768) {
+  document.getElementById("mobile-controls").style.display = "flex";
+} else {
+  document.getElementById("mobile-controls").style.display = "none";
+}
+
 const keys = {};
 document.addEventListener("keydown", (e) => {
   keys[e.code] = true;
@@ -39,6 +46,7 @@ document.addEventListener("keyup", (e) => {
   keys[e.code] = false;
 });
 
+// ✅ Mobile Touch Controls
 document.getElementById("left-btn").addEventListener("touchstart", () => moveLeft = true);
 document.getElementById("left-btn").addEventListener("touchend", () => moveLeft = false);
 
@@ -46,13 +54,12 @@ document.getElementById("right-btn").addEventListener("touchstart", () => moveRi
 document.getElementById("right-btn").addEventListener("touchend", () => moveRight = false);
 
 document.getElementById("jump-btn").addEventListener("touchstart", (e) => {
-  e.preventDefault(); // prevent unwanted scrolling
+  e.preventDefault();
   if (!isJumping && !gameOver && !gameWon) {
     velocityY = jumpPower;
     isJumping = true;
   }
 });
-
 
 const images = {};
 const imageFiles = [
@@ -116,7 +123,7 @@ function draw() {
 
   frame++;
 
-  restartBtn.style.display = "none"; // hide during normal play
+  restartBtn.style.display = "none"; // Hide button unless win/loss
 
   if (health <= 0 && !gameOver) {
     health = 0;
@@ -133,7 +140,7 @@ function draw() {
     ctx.font = "24px Arial";
     ctx.fillText("Final Score: " + score, centerX - 80, centerY + 40);
 
-    restartBtn.style.top = `${centerY + 120}px`; // lowered!
+    restartBtn.style.top = `${centerY + 100}px`;
     restartBtn.style.left = "50%";
     restartBtn.style.transform = "translateX(-50%)";
     restartBtn.style.display = "block";
@@ -165,7 +172,7 @@ function draw() {
 
     const scrollX = heroX - canvas.width / 3;
     if (glitchTimer > 0 && frame % 10 < 5) {
-      // glitch flicker
+      // Glitch flicker: skip drawing
     } else {
       ctx.drawImage(sprite, heroX - scrollX, heroY, 50, 50);
     }
@@ -295,8 +302,7 @@ function draw() {
     ctx.font = "24px Arial";
     ctx.fillText("Final Score: " + score, centerX - 80, centerY + 120);
 
-    restartBtn.style.top = `${centerY + 280}px`;
- // << LOWERED!
+    restartBtn.style.top = `${centerY + 160}px`; // LOWER POSITION
     restartBtn.style.left = "50%";
     restartBtn.style.transform = "translateX(-50%)";
     restartBtn.style.display = "block";
