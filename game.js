@@ -41,14 +41,18 @@ document.addEventListener("keyup", (e) => {
 
 document.getElementById("left-btn").addEventListener("touchstart", () => moveLeft = true);
 document.getElementById("left-btn").addEventListener("touchend", () => moveLeft = false);
+
 document.getElementById("right-btn").addEventListener("touchstart", () => moveRight = true);
 document.getElementById("right-btn").addEventListener("touchend", () => moveRight = false);
-document.getElementById("jump-btn").addEventListener("click", () => {
+
+document.getElementById("jump-btn").addEventListener("touchstart", (e) => {
+  e.preventDefault(); // prevent unwanted scrolling
   if (!isJumping && !gameOver && !gameWon) {
     velocityY = jumpPower;
     isJumping = true;
   }
 });
+
 
 const images = {};
 const imageFiles = [
