@@ -165,9 +165,11 @@ function draw(){
     ctx.fillText("SAVED!!",cx-100,cy+80);
     ctx.font="24px Arial";
     ctx.fillText("Final Score: "+score,cx-80,cy+120);
-    restartBtn.style.top=`${cy+160}px`;
-    restartBtn.style.left="50%";restartBtn.style.transform="translateX(-50%)";
-    restartBtn.style.display="block";
+     restartBtn.style.top = `${centerY + 280}px`;
+ // << LOWERED!
+    restartBtn.style.left = "50%";
+    restartBtn.style.transform = "translateX(-50%)";
+    restartBtn.style.display = "block";
   }
 
   requestAnimationFrame(draw);
