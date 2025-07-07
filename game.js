@@ -84,7 +84,7 @@ function draw(){
     ctx.fillStyle="black";ctx.font="48px Arial";
     ctx.fillText("GAME OVER",cx-140,cy);
     ctx.font="24px Arial";ctx.fillText("Final Score: "+score,cx-80,cy+40);
-    restartBtn.style.top = `${cy + 200}px`;
+    restartBtn.style.top = `${cy + 160}px`;
     restartBtn.style.left="50%";restartBtn.style.transform="translateX(-50%)";
     restartBtn.style.display="block"; return;
   }
