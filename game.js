@@ -132,7 +132,8 @@ function draw() {
     ctx.font = "24px Arial";
     ctx.fillText("Final Score: " + score, centerX - 80, centerY + 40);
 
-    restartBtn.style.top = `${centerY + 120}px`; // lowered!
+    restartBtn.style.top = `${centerY + 120}px`; // moved lower than before
+
     restartBtn.style.left = "50%";
     restartBtn.style.transform = "translateX(-50%)";
     restartBtn.style.display = "block";
@@ -294,8 +295,8 @@ function draw() {
     ctx.font = "24px Arial";
     ctx.fillText("Final Score: " + score, centerX - 80, centerY + 120);
 
-    restartBtn.style.top = `${centerY + 280}px`;
- // << LOWERED!
+    restartBtn.style.top = `${centerY + 190}px`; // moved even lower to stay under "Final Score"
+
     restartBtn.style.left = "50%";
     restartBtn.style.transform = "translateX(-50%)";
     restartBtn.style.display = "block";
