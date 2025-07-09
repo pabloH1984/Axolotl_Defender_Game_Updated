@@ -103,3 +103,55 @@ canvas {
   right: 20px;
   bottom: 0;
 }
+/* === MOBILE CONTROLS STYLING === */
+#mobile-controls {
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+#move-zone {
+  position: absolute;
+  left: 20px;
+  bottom: 0;
+  width: 160px;
+  height: 80px;
+  border-radius: 80px;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  pointer-events: auto;
+}
+
+#left-btn,
+#right-btn,
+#jump-btn {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.3);
+  pointer-events: auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  backdrop-filter: blur(4px);
+  font-size: 16px;
+  color: black;
+  font-weight: bold;
+}
+
+#left-btn:hover,
+#right-btn:hover,
+#jump-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+#jump-btn {
+  position: absolute;
+  right: 100px; /* Move jump button to left slightly so it's visible */
+  bottom: 0;
+}
