@@ -1,0 +1,69 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    user-select: none;
+  }
+  
+  canvas {
+    border: 3px solid #fff;
+    background: url('images/background.jpg') no-repeat center center;
+    background-size: cover;
+    display: block;
+  }
+  
+  #mobile-controls {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    z-index: 999;
+  }
+  
+  #mobile-controls button {
+    padding: 18px 24px;
+    font-size: 22px;
+    border: none;
+    border-radius: 12px;
+    background-color: #009393;
+    color: white;
+    font-weight: bold;
+    touch-action: manipulation;
+    transition: background-color 0.2s, transform 0.1s;
+  }
+  
+  #mobile-controls button:active {
+    background-color: #009393;
+    transform: scale(0.95);
+  }
+  
+  @media (min-width: 768px) {
+    #mobile-controls {
+      display: none;
+    }
+  }
+  #restart-btn {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #00a5ec;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    transition: opacity 0.3s;
+    display: none; /* hidden by default */
+  }
+  

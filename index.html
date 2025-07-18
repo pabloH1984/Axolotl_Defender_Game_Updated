@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Axolotl Defender</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- START SCREEN -->
+  <div id="start-screen" style="position:absolute; top:0; left:0; width:100vw; height:100vh; background:black; color:white; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:2rem; box-sizing:border-box; z-index:1000;">
+    <h1 style="font-size:3rem; margin-bottom:1rem;">Axolotl Defender</h1>
+    <p style="max-width:600px; margin-bottom:2rem;">
+      After saving Axey and helping rescue the endangered axolotls, Enrique thought his mission was over...<br/>
+      Until one morning… Axey was gone. <br/>
+      Now, Enrique begins his journey as the Axolotl Defender. 
+    </p>
+    <button id="start-btn" style="padding:1rem 2rem; font-size:1.2rem; background:#00c5aa; border:none; color:white; border-radius:8px; cursor:pointer;">
+      Begin Mission
+    </button>
+  </div>
+
+  <!-- GAME CANVAS -->
+  <canvas id="gameCanvas" style="display:none;"></canvas>
+
+  <!-- RESTART BUTTON -->
+  <button id="restart-btn" style="display:none; position:absolute; z-index:500;">Restart</button>
+
+  <!-- MOBILE CONTROLS -->
+  <div id="mobile-controls" style="display:none; position:absolute; bottom:10px; left:50%; transform:translateX(-50%); z-index:500;">
+    <button id="left-btn">⬅️</button>
+    <button id="jump-btn">⤴️</button>
+    <button id="right-btn">➡️</button>
+  </div>
+
+  <!-- GAME SCRIPT -->
+  <script src="game.js"></script>
+</body>
+</html>
