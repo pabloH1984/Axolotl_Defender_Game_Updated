@@ -15,8 +15,7 @@ const imageFiles = [
   "Axolotl yellow1.png",
   "background.jpg",
   "background2.jpg",
-  "clouds.png",
-  "AXOLOTL_ SAVED.png"
+  "clouds.png"
 ];
 
 let loadedImages = 0;
@@ -44,21 +43,12 @@ document.getElementById("start-btn").addEventListener("click", () => {
   }
 });
 
-let heroX = 0,
-  heroY = canvas.height - 100;
-let velocityY = 0,
-  gravity = 1,
-  jumpPower = -15,
-  isJumping = false;
-let frame = 0,
-  score = 0;
-let health = 100,
-  maxHealth = 100;
-let moveLeft = false,
-  moveRight = false;
-let gameWon = false,
-  gameOver = false,
-  confettiActive = false;
+let heroX = 0, heroY = canvas.height - 100;
+let velocityY = 0, gravity = 1, jumpPower = -15, isJumping = false;
+let frame = 0, score = 0;
+let health = 100, maxHealth = 100;
+let moveLeft = false, moveRight = false;
+let gameWon = false, gameOver = false, confettiActive = false;
 
 const keys = {};
 document.addEventListener("keydown", e => {
@@ -106,11 +96,11 @@ function startGame() {
 function draw() {
   frame++;
 
-  // Scroll logic
+  // Scroll
   let scrollX = heroX - canvas.width / 3;
   if (scrollX < 0) scrollX = 0;
 
-  // Background switching
+  // Background scroll
   const bgImg = scrollX > 1000 ? images["background2.jpg"] : images["background.jpg"];
   ctx.drawImage(bgImg, 0 - (scrollX % canvas.width), 0, canvas.width, canvas.height);
   ctx.drawImage(bgImg, canvas.width - (scrollX % canvas.width), 0, canvas.width, canvas.height);
@@ -120,7 +110,7 @@ function draw() {
   ctx.drawImage(images["clouds.png"], cloudX, 30, canvas.width, 100);
   ctx.drawImage(images["clouds.png"], cloudX + canvas.width, 30, canvas.width, 100);
 
-  // Movement
+  // Move
   if (keys["ArrowLeft"] || keys["KeyA"] || moveLeft) heroX -= 5;
   if (keys["ArrowRight"] || keys["KeyD"] || moveRight) heroX += 5;
 
@@ -132,7 +122,7 @@ function draw() {
     isJumping = false;
   }
 
-  // Defender sprite
+  // Defender walk animation
   const sprite = frame % 30 < 10
     ? images["Axolotl defender 1.png"]
     : frame % 30 < 20
@@ -147,7 +137,6 @@ function draw() {
       enemy.x -= 0.5;
       const hit = heroX + 40 > enemy.x && heroX < enemy.x + 40 &&
                   heroY + 50 > enemy.y && heroY < enemy.y + 50;
-
       if (hit && velocityY > 0 && heroY + 50 <= enemy.y + 20) {
         enemy.defeated = true;
         velocityY = jumpPower;
@@ -155,27 +144,25 @@ function draw() {
       } else if (hit) {
         health -= 1;
       }
-
       ctx.drawImage(images["Salamander 1.png"], enemy.x - scrollX, enemy.y, 50, 50);
     } else {
       defeatedCount++;
     }
   });
 
-  // Show axolotl
+  // Axolotl appears
   if (defeatedCount >= 6) axolotl.visible = true;
 
   if (axolotl.visible) {
     const bob = Math.sin(frame / 20) * 4;
     ctx.drawImage(images["Axolotl yellow1.png"], axolotl.x - scrollX, axolotl.y + bob, 50, 50);
-
     if (heroX + 40 > axolotl.x && heroX < axolotl.x + 40) {
       gameWon = true;
       confettiActive = true;
     }
   }
 
-  // Health + Score UI
+  // UI
   const barW = 200, barH = 20, barX = canvas.width / 2 - barW / 2;
   ctx.fillStyle = "#fff";
   ctx.fillRect(barX - 2, 20 - 2, barW + 4, barH + 4);
@@ -188,7 +175,7 @@ function draw() {
   ctx.fillText("Health: " + Math.floor(health) + "%", barX + 50, 35);
   ctx.fillText("Score: " + score, 10, 30);
 
-  // Confetti effect
+  // Confetti & Thank You
   if (confettiActive) {
     confetti.forEach(c => {
       ctx.fillStyle = c.color;
@@ -199,15 +186,17 @@ function draw() {
         c.x = Math.random() * canvas.width;
       }
     });
-    ctx.drawImage(images["AXOLOTL_ SAVED.png"], canvas.width / 2 - 100, canvas.height / 2 - 100, 200, 150);
+    ctx.drawImage(images["Axolotl defender 3.png"], canvas.width / 2 - 100, canvas.height / 2 - 80, 50, 50);
+    ctx.drawImage(images["Axolotl yellow1.png"], canvas.width / 2 + 50, canvas.height / 2 - 80, 50, 50);
     ctx.fillStyle = "black";
-    ctx.font = "40px Arial";
-    ctx.fillText("THANK YOU FOR SAVING ME!", canvas.width / 2 - 230, canvas.height / 2 + 80);
-    document.getElementById("restart-btn").style.top = canvas.height / 2 + 120 + "px";
+    ctx.font = "36px Arial";
+    ctx.fillText("THANK YOU FOR SAVING ME!!", canvas.width / 2 - 200, canvas.height / 2 + 30);
+    document.getElementById("restart-btn").style.top = canvas.height / 2 + 80 + "px";
     document.getElementById("restart-btn").style.display = "block";
     return;
   }
 
+  // Game over
   if (health <= 0) {
     ctx.fillStyle = "black";
     ctx.font = "48px Arial";
